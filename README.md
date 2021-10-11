@@ -21,5 +21,5 @@ The next finding, Fig 7, is very interesting. The authors first probe DS accurac
 
 To me, this essentially confirms the rule-of-thumb that earlier layers learn more general features and final layers learn more task-specific features. 
 
-
+Now, let's investigate head weight decay (WD) and learning rate (LR) during finetuning. Looking at Fig 8, it seems for similar US and DS tasks, large head WD values (during pre-training) seems to benefit the DS task at the expense of US. But for DS and US tasks that are far apart (like uc_merced or col_hist), cranking up WD reduces both US and DS performance. In the conclusions of this section they state: "In other words, there are cases where increasing or decreasing US head WD results in improved performance for a DS task and degraded performance for another DS task. Therefore, one cannot simply save a checkpoint of a model pre-trained on an upstream task and use it for all downstream tasks." However, this conclusion is strongest for fewer DS shots. So if you expect to have more finetuning data (say more than 20 shots), this result shouldn't be as meaningful for you. Lowering head LR (during pre-training) is also said to have a similar effect as increasing head WD.
 

@@ -33,7 +33,7 @@ The authors note "that the effect of (model) architecture is only observed throu
 
 The paper concludes with: "We demonstrate the role of hyper-parameters and emphasize that one cannot hope to find one pre-trained checkpoint that performs well on all possible downstream tasks. We assert that we should refrain from focusing on the performance of only one downstream task, which usually ends up being close to the upstream task. Instead, we should make design choices that improve performance on a breadth of downstream tasks. Moreover, scaling has both monetary and environmental costs [Patterson et al., 2021]. We argue that, when investing in terms of scaling in terms of data, model parameters and compute, we should think of an additional axis which is data diversity."
 
-## ICLR 2022 Submissions
-Below, I will very briefly note the key point(s) of ICLR 2022 submissions I found interesting (mainly searching for "transfer" and "pre-training" in titles).
+## Factors of Influence for Transfer Learning across Diverse Appearance Domains and Task Types (https://arxiv.org/abs/2103.13318)
 
-### Paper 1
+This is another super interesting paper on transfer learning in vision, and is referenced by the previous paper (Exploring the Limits...). The authors perform over 1200 transfer learning experiments on many vision domains, dataset sizes, and tasks. Their experimental setup is ImageNet pre-training -> source task -> target task.
+

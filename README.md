@@ -37,3 +37,18 @@ The paper concludes with: "We demonstrate the role of hyper-parameters and empha
 
 This is another super interesting paper on transfer learning in vision, and is referenced by the previous paper (Exploring the Limits...). The authors perform over 1200 transfer learning experiments on many vision domains, dataset sizes, and tasks. Their experimental setup is ImageNet pre-training -> source task -> target task.
 
+They create 7 domain groups, from their datasets: consumer photos, driving, indoor, aerial, underwater, close-ups, and synthetic. Along with 4 tasks: semantic segmentation, object detection, keypoint detection, and depth estimation - all of which involve spatial localization. With 40 total datasets, each dataset is used as both a source and a target.
+
+Based off their experiments, the authors make 10 claims:
+1. Classic ILSVRC’12 transfer learning always outperforms training a model from scratch.
+2. For most target tasks there exists a source task which brings further benefits on top of ILSVCR’12 pre-training.
+3. The image domain strongly affects transfer gains.
+4. For positive transfer, the source image domain should include the target domain.
+5. Multi-source models yield good transfer, but are outperformed by the largest within-domain source.
+6. Transfer across task types can bring positive transfer gains.
+7. Transfer within-task-type and within-domain yields very positive effects.
+8. Transfer naturally flows from larger to smaller datasets.
+9. Transfer learning effects are larger for small target training sets.
+10. The source domain including the target is more important than the number of source samples.
+
+

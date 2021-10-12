@@ -29,7 +29,11 @@ Fig 11 plots the best WD for each task, and the US/DS correlations. It shows tha
 
 In section 5 the authors comment about how generalizable these conclusions are. For a full-blown transfer learning scenario, with 1000 samples per class, they claim similar general trends as the few-shot setup. More finetuning results are available in the appendix, section E. There we can see massive gains in CIFAR100 accuracy when pre-training with a high head WD, and massive losses in accuracy for clevr (visual QnA) when increasing head WD. My takeaway is that if you know your DS task is very similar to your US task, then using a higher head WD during pre-training may be worth it. If not, it may be wiser to train more general final layers via a very low head WD (or a larger head, not discussed in this paper) - or a higher head LR, which is cheaper than a larger head. 
 
-The authors note "that the effect of (model) architecture is only observed through the US performance." Basically, if your model architecture can improve US performance, than it may help with DS. But for a given US accuracy, model archicture likely doesn't play much of a role in DS accuracy. 
+The authors note "that the effect of (model) architecture is only observed through the US performance." Basically, if your model architecture can improve US performance, then it may help with DS. But for a given US accuracy, model archicture likely doesn't play much of a role in DS accuracy. 
 
 The paper concludes with: "We demonstrate the role of hyper-parameters and emphasize that one cannot hope to find one pre-trained checkpoint that performs well on all possible downstream tasks. We assert that we should refrain from focusing on the performance of only one downstream task, which usually ends up being close to the upstream task. Instead, we should make design choices that improve performance on a breadth of downstream tasks. Moreover, scaling has both monetary and environmental costs [Patterson et al., 2021]. We argue that, when investing in terms of scaling in terms of data, model parameters and compute, we should think of an additional axis which is data diversity."
 
+## ICLR 2022 Submissions
+Below, I will very briefly note the key point(s) of ICLR 2022 submissions I found interesting (mainly searching for "transfer" and "pre-training" in titles).
+
+### Paper 1

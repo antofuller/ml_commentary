@@ -39,7 +39,7 @@ This is another super interesting paper on transfer learning in vision, and is r
 
 They create 7 domain groups, from their datasets: consumer photos, driving, indoor, aerial, underwater, close-ups, and synthetic. Along with 4 tasks: semantic segmentation, object detection, keypoint detection, and depth estimation - all of which involve spatial localization. With 40 total datasets, each dataset is used as both a source and a target.
 
-Based off their experiments, the authors make 10 claims:
+Based off their experiments, the authors make 10 claims: (direct quotes)
 1. Classic ILSVRC’12 transfer learning always outperforms training a model from scratch.
 2. For most target tasks there exists a source task which brings further benefits on top of ILSVCR’12 pre-training.
 3. The image domain strongly affects transfer gains.

@@ -51,4 +51,26 @@ Based off their experiments, the authors make 10 claims: (direct quotes)
 9. Transfer learning effects are larger for small target training sets.
 10. The source domain including the target is more important than the number of source samples.
 
+## SustainBench: Benchmarks for Monitoring the Sustainable Development Goals with Machine Learning (https://arxiv.org/abs/2111.04724)
 
+This paper introduces benchmarks for remotely monitoring Sustainable Development Goals (SDGs). Most (11 of 15) of the datasets are released for the first time, and the majority use satellite imagery. Below is a table outlining key features of their data.
+
+https://github.com/sustainlab-group/sustainbench/
+
+| Name  | Inputs |
+| ------------- | ------------- |
+| Task 1A: Predicting poverty over space | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 1B: Predicting change in poverty over time | 255x255x8 (7 from Landsat, and 1 from either DMSP or VIIRS satellites) |
+| Task 2A: Cropland mapping  | 50x50x7 (from Landsat) |
+| Task 2B1: Crop type mapping, in Ghana in South Sudan | 64x64x17 (3 from Sentinel-1, 10 from Sentinel-2, and 4 from PlanetScope) |
+| Task 2B2: Crop type mapping, in Kenya | 64x64x10 (from Sentinel-2) to be confirmed... |
+| Task 2C: Crop yield prediction | 32x32x9 (from MODIS) |
+| Task 2D: Field delineation | 224x224x3 (from Sentinel-2) |
+| Task 3A: Child mortality rate | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 3B: Women BMI | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 4A: Women educational attainment | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 6A: Clean water | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 6B: Sanitation | 255x255x8 (7 from Landsat and 1 from either DMSP or VIIRS satellites) plus street-views |
+| Task 13A: Brick kiln classification | 64x64x13 (from Sentinel-2) |
+| Task 15A: Feature learning for land cover classification | 100x100x4 (from aerial imagery) |
+| Task 15B: Out-of-domain land cover classification | 46x8(?) (7 from MODIS and 1 from NDVI) |

@@ -74,3 +74,7 @@ https://github.com/sustainlab-group/sustainbench/
 | Task 13A: Brick kiln classification | 64x64x13 (from Sentinel-2) |
 | Task 15A: Feature learning for land cover classification | 100x100x4 (from aerial imagery) |
 | Task 15B: Out-of-domain land cover classification | 46x8(?) (7 from MODIS and 1 from NDVI) |
+
+## Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (https://arxiv.org/abs/2103.14030)
+
+Incoming...

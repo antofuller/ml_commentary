@@ -40,8 +40,8 @@ This is another super interesting paper on transfer learning in vision, and is r
 They create 7 domain groups, from their datasets: consumer photos, driving, indoor, aerial, underwater, close-ups, and synthetic. Along with 4 tasks: semantic segmentation, object detection, keypoint detection, and depth estimation - all of which involve spatial localization. With 40 total datasets, each dataset is used as both a source and a target.
 
 Based off their experiments, the authors make 10 claims: (direct quotes)
-1. Classic ILSVRC’12 transfer learning always outperforms training a model from scratch.
-2. For most target tasks there exists a source task which brings further benefits on top of ILSVCR’12 pre-training.
+1. Classic ImageNet-1k transfer learning always outperforms training a model from scratch.
+2. For most target tasks there exists a source task which brings further benefits on top of ImageNet-1k pre-training.
 3. The image domain strongly affects transfer gains.
 4. For positive transfer, the source image domain should include the target domain.
 5. Multi-source models yield good transfer, but are outperformed by the largest within-domain source.
@@ -75,6 +75,17 @@ https://github.com/sustainlab-group/sustainbench/
 | Task 15A: Feature learning for land cover classification | 100x100x4 (from aerial imagery) |
 | Task 15B: Out-of-domain land cover classification | 46x8(?) (7 from MODIS and 1 from NDVI) |
 
-## Swin Transformer: Hierarchical Vision Transformer using Shifted Windows (https://arxiv.org/abs/2103.14030)
+## How to train your ViT? Data, Augmentation, and Regularization in Vision Transformers (https://arxiv.org/abs/2106.10270)
 
-Incoming...
+This is another massive study which investigates the roles of regularization, data augmentation, training data size, and compute budget for vision transformers (ViT). The two main pre-training datasets used are ImageNet-1k (IN1K) and ImageNet-21k (IN21K). IN1K contains 1.3M images with 1k classes, and IN21K contains 14M images with 21k classes. Further, they stick with 4 ViT architectures ViT-Ti (6M), ViT-S (22M), ViT-B (86M) and ViT-L (307M parameters); typically with patch sizes of 16x16 pixels, but add on a 32x32 variant for ViT-S and ViT-B. They also do not include a hidden layer in the head.
+
+For regularization they experiment with dropout and stochastic depth. For data augmentation they try RandAugment and Mixup. Section 3.3 contains their full hyper-parameter sweep. They additionally set the batch size to 4096, use gradient clipping, the Adam optimizer, and use a cosine LR schedule with a linear warmup for the first 10k steps. For fine-tuning they use SGD with momentum 0.9 and batch size 512.
+
+Now to the findings...
+
+1. A proper AugReg strategy can yield performance gains roughly equal to increasing dataset size by 10x.
+2. Always start with a pre-trained model.
+3. For a fixed compute budget use more data! For instance, IN1K for 300 epochs is signifcantly worse than IN21K for 30 epochs, specially using the ViT-L model.
+4. AugReg is tricky since many settings perform worse than no AugReg at all. Generally, augmentation helps more consistently than regularization. If we focus on ViT-L, it appears that regularizing helps only when no augmentation is used - this regime should be easier to setup via dropout(0.1). Looking at Figure 4, it also seems that augmentation is even more crucial when training under the 300 epoch setting rather than the 30 epoch setting. 
+5. When fine-tuning, selecting the pre-trained model with the best upstream accuracy is the most cost-effective approach. But with lots of resources it could help to fine-tune on many pre-trained models and select the best via its downstream accuracy. 
+6. Looking at Figure 6, it appears that larger models (i.e. ViT-L) benefit more from dataset size than smaller models (with a fixed budget).

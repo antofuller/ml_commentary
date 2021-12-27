@@ -97,3 +97,8 @@ The main contribution of this paper is to show the instability of SSL of ViT mod
 The following observations were found under a MoCo v3 SSL setup, unless stated otherwise. Sine-cosine absolute position embeddings performed similarly to learned, while no position encoding only dropped linear accuracy from 76.1 to 74.9. Without a CLS token, you'll need to pool the final representations (for image classification), but using a LayerNorm (LN) on these final representations will significantly hurt the pooled representation. ViT models do not use BatchNorm (BN), but including BN in the MLP head (used in many SSL setups) helps linear probing (74.4 -> 76.5). An extra MLP head boosts accuracy (75.5 -> 76.5). Model size matters! ViT-B/16 @ 300-epochs (76.5) is better than ViT-S/16 @ 600-epochs (73.4). Swap out LNs for BNs in the transformer architecture (excluding the attention layers) for a consistent %1 boost in accuracy. Figure 8 shows that smaller patches are better than larger patches, i.e. ViT-BN/7 is better than ViT-BN/16 by a few percenatge points given the same input image size (so the smaller patches would translate to a longer input sequence).
 
 The authors end by discussing SSL more broadly. Supervised pre-training saturates as model size scales (can even get worse with size), whereas SSL pre-training saturates less. They hint at designing more difficult SSL tasks, foreshadowing Kaiming He's (last author on this paper) masked auto-encoder paper, that tries to limit saturation at scale. 
+
+## Discrete Vision Transformers (https://arxiv.org/abs/2111.10493) and (https://arxiv.org/abs/2111.12710)
+
+Two papers exploring discrete ViTs were released simultaneously, they will be refered to as Dr ViT and PeCo. 
+

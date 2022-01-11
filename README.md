@@ -98,7 +98,12 @@ The following observations were found under a MoCo v3 SSL setup, unless stated o
 
 The authors end by discussing SSL more broadly. Supervised pre-training saturates as model size scales (can even get worse with size), whereas SSL pre-training saturates less. They hint at designing more difficult SSL tasks, foreshadowing Kaiming He's (last author on this paper) masked auto-encoder paper, that tries to limit saturation at scale. 
 
-## Discrete Vision Transformers (https://arxiv.org/abs/2111.10493) and (https://arxiv.org/abs/2111.12710)
+## Discrete Images
 
-Two papers exploring discrete ViTs were released simultaneously, they will be refered to as Dr ViT and PeCo. 
+Discrete representations of images, or image patches, are a key component in many recent CV systems.
 
+The image-GPT (iGPT: Generative Pretraining from Pixels) clusters patches of pixels using kmeans (512 centroids) in order to reduce the sequence length that self-attention operates on. Effectively compressing their images from 224x224x3 to 32x32x3, 48x48x3, or 64x64x3. Since the GPU memory and time required to process self-attention scales quadratically with the sequence length these are enormous reductions in computational cost. A head-to-head comparison of using inputs of size 32x32x3 versus 48x48x3 shows the larger inputs outperform the smaller (65.2% vs 60.3% accuracy). They compare GPT vs BERT-style pre-training; BERT wins on ImageNet and GPT on CIFAR10.
+
+DALL-E (Zero-Shot Text-to-Image Generation) trains a discrete variational autoencoder (dVAE) that compresses a 256x256x3 image into a 32x32 grid of discrete image tokens with each token representating 1 of 8192 possible values. This results in a compression factor of 192. They use the gumbel-softmax estimator and decrease the temperature (approaching an argmax) during training. In section 2.1, they mention VQ-VAEs, which leads me to think they tried them but couldn't match the performance of their gumbel-softmax model. They also mention specific tricks to stabilize training, implying that training stability was an issue. 
+
+BEIT (BERT Pre-Training of Image Transformers) takes the DALL-E image tokenizer (technically the dVAE encoder) and "tokenizes" their dataset. They then pre-train ViTs to reconstruct the partially-masked image. Specifically, images are cut up into 16x16x3 patches, a mask embedding randomly replaces 40% of these patches, then the model attempts to predict the masked patches. But rather than predict the masked pixels values (i.e. the 16x16x3 tensor), the model is trained to predict the discrete token that represents that 16x16x3 tensor of pixel values. 

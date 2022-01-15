@@ -109,3 +109,13 @@ DALL-E (Zero-Shot Text-to-Image Generation) trains a discrete variational autoen
 BEIT (BERT Pre-Training of Image Transformers) takes the DALL-E image tokenizer (technically the dVAE encoder) and "tokenizes" their dataset. They then pre-train ViTs to reconstruct the partially-masked image. Specifically, images are cut up into 16x16x3 patches, a mask embedding randomly replaces 40% of these patches, then the model attempts to predict the masked patches. But rather than predict the masked pixels values (i.e. the 16x16x3 tensor), the model is trained to predict the discrete token that represents that 16x16x3 tensor of pixel values. Interestingly, recovering image tokens leads to better downstream performance than pre-training a model to recover the masked pixels. Also, their mask ratio of 40% was surprising; BERT only masks 15% of input tokens. 
 
 PeCo (Perceptual Codebook for BERT Pre-training of Vision Transformers) improves on BEIT by training a better dVAE. Their perceptual codebook is trained by using both the per-pixel loss function (MSE between original and reconstructed pixels) and a perceptual loss function (features from a pre-trained CV model). This perceptual codebook is then used in the same manner that BEIT uses DALL-E's image tokenizer. Their tokenizers are trained on ImageNet-1k with 25.7 and 37.5M parameter ConvNets - both outperform DALL-E's tokenizer which is larger (54M params) and trained on more images (400M vs 1.3M). The authors also perform a bunch of nice ablations; codebook training dataset size, model architecture, perceptual model, and adversarial loss.
+
+Dr ViT...
+
+## Unlocking large-scale crop field delineation in smallholder farming systems with transfer learning and weak supervision (https://arxiv.org/abs/2201.04771)
+
+This paper demonstrates that supervised pre-training with a dataset of field boundaries from France can be successfully transfered to field delineation in India. They also release a new dataset of 10k manually-annotated field boundaries across India, but the images are only partially labeled; "only a fraction of the fields in each image are labeled, allowing fields from more locations across India to be sampled for the same labeling budget." This turned out to be a more cost-effective labelling strategy than fully labelling a smaller amount of images. 
+
+They collect data from SPOT-6/7 at 1.5m resolution and 4 optical bands, along with Planet's basemap imagery which has a resolution of 4.77m and 3 optical bands. Their pre-training dataset consists of 10k images (256x256x3 input shape, I think) containing over 2.7m fields. 
+
+

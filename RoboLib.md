@@ -3,11 +3,11 @@ RoboLib is an abstractive summarization system I built from March 2020 to August
 
 After countless experiments, my final summarization pipeline looked like this:
 
-Data cleaning. I fine-tuned a pre-trained language model (PLM) to automatically fix PDF-to-text conversion errors, and remove headers, footers, page numbers, bibliographies, in-text references, etc.
-Book chunking. I split up the book into chunks of 4 to 9 sentences using a PLM to guide the splitting decisions. 
-Extractive summarization. I selected 25 chunks using SOTA extractive summarization algorithms. 
-Abstractive summarization. I summarized each of the 25 chunks 15 times using a massive PLM that I fine-tuned.
-Summary reranking. With 15 candidate summaries per chunk, I used 2 PLMs to select the best candidate, based on each candidate's factuality and “human-like” scores.
+1. Data cleaning. I fine-tuned a pre-trained language model (PLM) to automatically fix PDF-to-text conversion errors, and remove headers, footers, page numbers, bibliographies, in-text references, etc.
+2. Book chunking. I split up the book into chunks of 4 to 9 sentences using a PLM to guide the splitting decisions. 
+3. Extractive summarization. I selected 25 chunks using SOTA extractive summarization algorithms. 
+4. Abstractive summarization. I summarized each of the 25 chunks 15 times using a massive PLM that I fine-tuned.
+5. Summary reranking. With 15 candidate summaries per chunk, I used 2 PLMs to select the best candidate, based on each candidate's factuality and “human-like” scores.
 ## Data Cleaning
 The books I wanted to summarize were available in PDF, so I needed to convert them into text files. There are tools to convert PDF files but they introduce an enormous amount of errors into the text file. At first I tried creating a list of rules to clean each converted text file, and that helped but it wasn’t good enough for my liking. My hand-written rules could fix many encoding errors and easy patterns, but struggled to remove page headers and footers.
 
